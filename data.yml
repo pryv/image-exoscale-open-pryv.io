@@ -92,7 +92,7 @@ write_files:
       },
       "auth": {
         "adminAccessKey": "${RANDOM_KEY}",
-        "trustedApps": "*@https://pryv.github.io*, *@https://*.${DOMAIN}*"
+        "trustedApps": "*@https://pryv.github.io*, *@https://*${DOMAIN}*"
       },
       "eventFiles": {
         "attachmentsDirPath": "var-pryv/attachment-files"
