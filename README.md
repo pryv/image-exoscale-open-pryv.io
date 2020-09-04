@@ -20,7 +20,7 @@ To create a new template, you have to connect to your [Exoscale Console](https:/
 
 Note that you have to create a new template for each datacenter you want to use.
 
-![Create template](/Users/alexandredeleze/Documents/pryv/image-exoscale-open-pryv.io/images/create_template.png)
+![Create template](./images/create_template.png)
 
 ## Setup Instance of the image
 
@@ -28,19 +28,19 @@ Note that you have to create a new template for each datacenter you want to use.
 
 To create an instance of the image, you first have to create an IP address.  For this go on COMPUTE/IP ADDRESSES, select the datacenter and click on allocate. Then select MANUAL and ALLOCATE.
 
-![Create IP](/Users/alexandredeleze/Documents/pryv/image-exoscale-open-pryv.io/images/create_ip.png)
+![Create IP](./images/create_ip.png)
 
 ### Create Instance
 
 To create a new Instance, click on COMPUTE/INSTANCES and then ADD. You can choose the hostname of the machine and make the configuration like the picture below.
 
-![Create Instance 1](/Users/alexandredeleze/Documents/pryv/image-exoscale-open-pryv.io/images/create_instance_1.png)
+![Create Instance 1](./images/create_instance_1.png)
 
 Then select the Security Group core and copy the content of the file `PATH_TO_ROOT/user_data.yaml` by replacing **${HOSTNAME}**, **${DOMAIN}**, **${RANDOM_KEY}** and **${EMAIL}** in the field `User Data` of the form.
 
-![Create Instance 2](/Users/alexandredeleze/Documents/pryv/image-exoscale-open-pryv.io/images/create_instance_2.png)
+![Create Instance 2](./images/create_instance_2.png)
 
 To finish the process, wait until the VM is marked as running and at the bottom of the page under the section `Additional IP addresses`, select the IP address you have created at the first step. Wait 2-3 minutes and your instance should work.
 
-![IP](/Users/alexandredeleze/Documents/pryv/image-exoscale-open-pryv.io/images/ip_address.png)
+![IP](./images/ip_address.png)
 
