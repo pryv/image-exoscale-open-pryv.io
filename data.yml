@@ -120,7 +120,7 @@ write_files:
 runcmd:
  - netplan apply
  - while ! ping -q -c 1 ${IP_ADDRESS} >/dev/null ; do sleep 1; done ;
- - certbot --nginx -n --email tech@pryv.com --agree-tos -d ${DOMAIN}
+ - certbot --nginx -n --email ${EMAIL} --agree-tos -d ${DOMAIN}
  - yes | yarn --cwd /home/ubuntu/open-pryv.io setup
  - yes | yarn --cwd /home/ubuntu/open-pryv.io release
  - yes | yarn --cwd /home/ubuntu/open-pryv.io pryv&
