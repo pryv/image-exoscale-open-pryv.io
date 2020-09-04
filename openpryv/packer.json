@@ -3,7 +3,7 @@
           "image_url": "https://cloud-images.ubuntu.com/bionic/current/bionic-server-cloudimg-amd64.img",
           "image_checksum_url": "https://cloud-images.ubuntu.com/bionic/current/SHA256SUMS",
           "image_checksum_type": "sha256",
-          "image_name": "ubuntu-bionic",
+          "image_name": "openpryv",
           "ssh_private_key_file": "{{env `PACKER_PRIVATE_KEY`}}"
       },
     "builders": [

@@ -1,10 +1,11 @@
 #!/bin/sh
 curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -
 apt-get update
-apt-get -y dist-upgrade \
-nodejs \
-npm \
-git
+apt-get install nodejs git nginx-core -y
+apt install npm -y
+
+snap install --classic certbot
+
 update-grub
 npm install -g yarn
 git clone https://github.com/pryv/open-pryv.io.git
