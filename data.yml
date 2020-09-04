@@ -9,7 +9,7 @@ write_files:
           match:
             name: lo
           addresses:
-          - ${IP_ADDRESS}/32
+          - 194.182.162.5/32
   path: /etc/netplan/51-eip.yaml
 - content: |
     upstream core_server {
@@ -26,7 +26,7 @@ write_files:
     server {
     # redirect from http to https
       listen 80 default_server;
-      server_name ${DOMAIN};
+      server_name alexandre2.py.cx;
 
       location /.well-known/acme-challenge/ {
         root /var/www/certbot;
@@ -38,15 +38,15 @@ write_files:
 
     server {
       # redirect from www to without www
-      server_name www.${DOMAIN};
-      return 301 $scheme://${DOMAIN}$request_uri;
+      server_name www.alexandre2.py.cx;
+      return 301 $scheme://alexandre2.py.cx$request_uri;
     }
 
     server {
       listen               443 ssl;
 
       # set server name from env variables (set in docker compose)
-      server_name          ${DOMAIN};
+      server_name          alexandre2.py.cx;
 
       client_max_body_size 20M;
 
@@ -84,15 +84,15 @@ write_files:
       },
       "dnsLess": {
         "isActive": true,
-        "publicUrl": "https://${DOMAIN}"
+        "publicUrl": "https://alexandre2.py.cx"
       },
       "http": {
         "port": 3000,
         "ip": "127.0.0.1"
       },
       "auth": {
-        "adminAccessKey": "${RANDOM_KEY}",
-        "trustedApps": "*@https://pryv.github.io*, *@https://*${DOMAIN}*"
+        "adminAccessKey": "some_random_key",
+        "trustedApps": "*@https://pryv.github.io*, *@https://*alexandre2.py.cx*"
       },
       "eventFiles": {
         "attachmentsDirPath": "var-pryv/attachment-files"
@@ -113,14 +113,16 @@ write_files:
         }
       }
     }
-  path: /home/ubuntu/open-pryv.io/config.json
+  path: /home/ubuntu/config.json
 
 
 
 runcmd:
  - netplan apply
- - while ! ping -q -c 1 ${IP_ADDRESS} >/dev/null ; do sleep 1; done ;
- - certbot --nginx -n --email ${EMAIL} --agree-tos -d ${DOMAIN}
+ - git -C /home/ubuntu/open-pryv.io/ pull
+ - mv /home/ubuntu/config.json /home/ubuntu/open-pryv.io/config.json
+ - while ! ping -q -c 1 194.182.162.5 >/dev/null ; do sleep 1; done ;
+ - certbot --nginx -n --email tech@pryv.com --agree-tos -d alexandre2.py.cx
  - yes | yarn --cwd /home/ubuntu/open-pryv.io setup
  - yes | yarn --cwd /home/ubuntu/open-pryv.io release
  - yes | yarn --cwd /home/ubuntu/open-pryv.io pryv&
