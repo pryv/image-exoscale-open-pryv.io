@@ -2,9 +2,9 @@
 
 ## Build Image
 
-To modify the image, add modules, you can modify the file `openpryv/script.sh`
+To modify the image, add modules, you can modify the file `openpryv/script.sh` and/or add files in `openpryv` and add them in the build by modifying `openpryv/packer.json`.
 
-To build a new image, you need to have a pair of SSH key (for example `~/.ssh/exo.pub`and `~/.ssh/exo`)
+To build a new image, you need to have a pair of SSH key without password (for example `~/.ssh/exo.pub`and `~/.ssh/exo`)
 
 On MacOS, you have to start a docker deamon and run at the root of the project `PACKER_PUBLIC_KEY=~/.ssh/exo.pub PACKER_PRIVATE_KEY=~/.ssh/exo ./build-docker.sh openpryv`.
 
