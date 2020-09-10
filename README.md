@@ -30,6 +30,8 @@ To create an instance of the image, you first have to create an IP address.  For
 
 ![Create IP](./images/create_ip.png)
 
+You must then create an A record inside your DNS linking this IP address and your domain.
+
 ### Create Firewall rules
 
 To create new Firewall rules, click on COMPUTE/FIREWALLING and then click on ADD button. You can create the group `core` and click on create. You can then select the group `core` and add new rules in order it is configured as the screenshot below.
