@@ -30,13 +30,19 @@ To create an instance of the image, you first have to create an IP address.  For
 
 ![Create IP](./images/create_ip.png)
 
+### Create Firewall rules
+
+To create new Firewall rules, click on COMPUTE/FIREWALLING and then click on ADD button. You can create the group `core` and click on create. You can then select the group `core` and add new rules in order it is configured as the screenshot below.
+
+![Firewall](./images/firewall.png)
+
 ### Create Instance
 
 To create a new Instance, click on COMPUTE/INSTANCES and then ADD. You can choose the hostname of the machine and make the configuration like the picture below.
 
 ![Create Instance 1](./images/create_instance_1.png)
 
-Then select the Security Group core and copy the content of the file `PATH_TO_ROOT/user_data.yaml` by replacing **${HOSTNAME}**, **${DOMAIN}**, **${RANDOM_KEY}** and **${EMAIL}** in the field `User Data` of the form.
+Then select the Security Group `core` and copy the content of the file `PATH_TO_ROOT/user_data.yaml` by replacing **${HOSTNAME}**, **${DOMAIN}**, **${ACCESS_KEY}** and **${EMAIL}** in the field `User Data` of the form.
 
 ![Create Instance 2](./images/create_instance_2.png)
 
