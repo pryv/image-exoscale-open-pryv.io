@@ -2,7 +2,6 @@
 write_files:
 - content: |
     {
-      "IP": "${IP_ADDRESS}",
       "DOMAIN": "${DOMAIN}",
       "EMAIL": "${EMAIL}",
       "KEY": "${ACCESS_KEY}"

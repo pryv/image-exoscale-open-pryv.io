@@ -6,7 +6,8 @@ apt-get install nodejs git nginx-core -y
 snap install --classic certbot
 npm install -g yarn
 
-git clone https://github.com/pryv/open-pryv.io.git
+mkdir /var/pryv
+git -C /var/pryv clone https://github.com/pryv/open-pryv.io.git
 
 update-grub
 

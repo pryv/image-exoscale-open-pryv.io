@@ -24,14 +24,6 @@ Note that you have to create a new template for each datacenter you want to use.
 
 ## Setup Instance of the image
 
-### IP Address
-
-To create an instance of the image, you first have to create an IP address.  For this go on COMPUTE/IP ADDRESSES, select the datacenter and click on allocate. Then select MANUAL and ALLOCATE.
-
-![Create IP](./images/create_ip.png)
-
-You must then create an A record inside your DNS linking this IP address and your domain.
-
 ### Create Firewall rules
 
 To create new Firewall rules, click on COMPUTE/FIREWALLING and then click on ADD button. You can create the group `core` and click on create. You can then select the group `core` and add new rules in order it is configured as the screenshot below.
@@ -48,7 +40,12 @@ Then select the Security Group `core` and copy the content of the file `PATH_TO_
 
 ![Create Instance 2](./images/create_instance_2.png)
 
-To finish the process, wait until the VM is marked as running and at the bottom of the page under the section `Additional IP addresses`, select the IP address you have created at the first step. Wait 2-3 minutes and your instance should work.
+### DNS Record
 
-![IP](./images/ip_address.png)
+When your machine is started, look at the IP address attributed to your machine (see screenshot below) and create an A record in your DNS with the ${DOMAIN} you furnished before.
 
+![IP address](/Users/alexandredeleze/Documents/pryv/image-exoscale-open-pryv.io/images/ip.png)
+
+## Miscellaneous
+
+In `openpryv/openpryv.sh`, a function of update is implemented. Each time we reboot the VM, we make a `git fetch`and `git merge`. To avoid problem with the config file, we give the `--strategy-option ours` to merge.

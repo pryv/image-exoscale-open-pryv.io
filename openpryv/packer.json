@@ -48,11 +48,6 @@
         },
         {
             "type": "file",
-            "source": "{{user `image_name`}}/51-eip.yaml",
-            "destination": "/home/ubuntu/51-eip.yaml"
-        },
-        {
-            "type": "file",
             "source": "{{user `image_name`}}/default",
             "destination": "/home/ubuntu/default"
         },
