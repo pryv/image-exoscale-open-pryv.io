@@ -4,7 +4,7 @@
     },
     "dnsLess": {
         "isActive": true,
-        "publicUrl": "https://${DOMAIN}"
+        "publicUrl": "https://${HOSTNAME}"
     },
     "http": {
         "port": 3000,
@@ -12,7 +12,7 @@
     },
     "auth": {
         "adminAccessKey": "${RANDOM_KEY}",
-        "trustedApps": "*@https://pryv.github.io*, *@https://*${DOMAIN}*"
+        "trustedApps": "*@https://pryv.github.io*, *@https://*${HOSTNAME}*"
     },
     "eventFiles": {
         "attachmentsDirPath": "var-pryv/attachment-files"

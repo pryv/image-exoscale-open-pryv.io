@@ -15,16 +15,20 @@ To create a new Instance, click on COMPUTE/INSTANCES and then ADD. You can choos
 
 ![Create Instance 1](./images/create_instance_1.png)
 
-Then select the Security Group `core` and copy the content of the snippet bellow by replacing **${DOMAIN}**, **${ACCESS_KEY}** and **${EMAIL}** in the field `User Data` of the form.
+Then select the Security Group `core` and copy the content of the snippet bellow by replacing **${HOSTNAME}**, **${SECRET_KEY}** and **${EMAIL}** in the field `User Data` of the form. Please, do not forget to copy `#cloud-config`.
+
+- **${HOSTNAME}** : Hostname used to access Open-Pryv.io
+- **${SECRET_KEY}** : This key must be randomly generated and is used as admin access key
+- **${EMAIL}** : This email is used only by Letsencrypt to give you information about your certificate and for recovery purposes ([Link to Letsencrypt](https://letsencrypt.org/fr/privacy/#subscriber)).
 
 ```yaml 
 #cloud-config
 write_files:
 - content: |
     {
-      "DOMAIN": "${DOMAIN}",
+      "HOSTNAME": "${HOSTNAME}",
       "EMAIL": "${EMAIL}",
-      "KEY": "${ACCESS_KEY}"
+      "KEY": "${SECRET_KEY}"
     }
   path: /tmp/conf/config.json
 
@@ -36,9 +40,17 @@ runcmd:
 
 #### DNS Record
 
-When your machine is started, look at the IP address attributed to your machine (see screenshot below) and create an A record in your DNS with the ${DOMAIN} you furnished before.
+When your machine is started, look at the IP address attributed to your machine (see screenshot below) and create an A record in your DNS with the ${HOSTNAME} you furnished before.
 
 ![IP address](./images/ip.png)
+
+### Log
+
+During the setup phase, the script will wait until you add the DNS A record. If you want to know the status of the setup, please connect in ssh inside your VM and read the log file `/home/ubuntu/setup.log`.
+
+### What next
+
+You can find the content of [Open-Pryv.io](https://github.com/pryv/open-pryv.io) in the folder `/var/pryv`. You can personalize your Open-Pryv by following the README of the git repo of Open-Pryv.io.
 
 ## Contribute 
 
@@ -63,7 +75,3 @@ To create a new template, you have to connect to your [Exoscale Console](https:/
 Note that you have to create a new template for each datacenter you want to use.
 
 ![Create template](./images/create_template.png)
-
-### Miscellaneous
-
-In `openpryv/openpryv.sh`, a function of update is implemented. Each time we reboot the VM, we make a `git fetch`and `git merge`. To avoid problem with the config file, we give the `--strategy-option ours` to merge.

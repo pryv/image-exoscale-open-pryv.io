@@ -12,7 +12,7 @@ upstream websocket_server {
 server {
 # redirect from http to https
     listen 80 default_server;
-    server_name ${DOMAIN};
+    server_name ${HOSTNAME};
 
     location /.well-known/acme-challenge/ {
     root /var/www/certbot;
@@ -24,15 +24,15 @@ server {
 
 server {
     # redirect from www to without www
-    server_name www.${DOMAIN};
-    return 301 $scheme://${DOMAIN}$request_uri;
+    server_name www.${HOSTNAME};
+    return 301 $scheme://${HOSTNAME}$request_uri;
 }
 
 server {
     listen               443 ssl;
 
     # set server name from env variables (set in docker compose)
-    server_name          ${DOMAIN};
+    server_name          ${HOSTNAME};
 
     client_max_body_size 20M;
 
