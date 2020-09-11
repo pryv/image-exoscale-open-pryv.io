@@ -15,7 +15,7 @@ To create a new Instance, click on COMPUTE/INSTANCES and then ADD. You can choos
 
 ![Create Instance 1](./images/create_instance_1.png)
 
-Then select the Security Group `core` and copy the content of the snippet bellow by replacing **${HOSTNAME}**, **${DOMAIN}**, **${ACCESS_KEY}** and **${EMAIL}** in the field `User Data` of the form.
+Then select the Security Group `core` and copy the content of the snippet bellow by replacing **${DOMAIN}**, **${ACCESS_KEY}** and **${EMAIL}** in the field `User Data` of the form.
 
 ```yaml 
 #cloud-config
