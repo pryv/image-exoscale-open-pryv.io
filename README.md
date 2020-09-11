@@ -1,6 +1,33 @@
 # Image Open-Pryv.io for Exoscale
 
-## Build Image
+## Usage
+### Setup Instance of the image
+
+#### Create Firewall rules
+
+To create new Firewall rules, click on COMPUTE/FIREWALLING and then click on ADD button. You can create the group `core` and click on create. You can then select the group `core` and add new rules in order it is configured as the screenshot below.
+
+![Firewall](./images/firewall.png)
+
+#### Create Instance
+
+To create a new Instance, click on COMPUTE/INSTANCES and then ADD. You can choose the hostname of the machine and make the configuration like the picture below.
+
+![Create Instance 1](./images/create_instance_1.png)
+
+Then select the Security Group `core` and copy the content of the file `PATH_TO_ROOT/user_data.yaml` by replacing **${HOSTNAME}**, **${DOMAIN}**, **${ACCESS_KEY}** and **${EMAIL}** in the field `User Data` of the form.
+
+![Create Instance 2](./images/create_instance_2.png)
+
+#### DNS Record
+
+When your machine is started, look at the IP address attributed to your machine (see screenshot below) and create an A record in your DNS with the ${DOMAIN} you furnished before.
+
+![IP address](./images/ip.png)
+
+## Contribute 
+
+### Build Image
 
 To modify the image, add modules, you can modify the file `openpryv/script.sh` and/or add files in `openpryv` and add them in the build by modifying `openpryv/packer.json`.
 
@@ -10,7 +37,7 @@ On MacOS, you have to start a docker deamon and run at the root of the project `
 
 On Linux, at the root run `PACKER_PUBLIC_KEY=~/.ssh/exo.pub PACKER_PRIVATE_KEY=~/.ssh/exo ./build.sh openpryv`.
 
-## Create a template
+### Create a template
 
 To create a template, you have to host the image on a publicly accessible HTTPS service such as Exoscale [Object Storage](https://community.exoscale.com/documentation/storage/), as you will need to indicate an URL pointing to it during template registration.
 
@@ -22,30 +49,6 @@ Note that you have to create a new template for each datacenter you want to use.
 
 ![Create template](./images/create_template.png)
 
-## Setup Instance of the image
-
-### Create Firewall rules
-
-To create new Firewall rules, click on COMPUTE/FIREWALLING and then click on ADD button. You can create the group `core` and click on create. You can then select the group `core` and add new rules in order it is configured as the screenshot below.
-
-![Firewall](./images/firewall.png)
-
-### Create Instance
-
-To create a new Instance, click on COMPUTE/INSTANCES and then ADD. You can choose the hostname of the machine and make the configuration like the picture below.
-
-![Create Instance 1](./images/create_instance_1.png)
-
-Then select the Security Group `core` and copy the content of the file `PATH_TO_ROOT/user_data.yaml` by replacing **${HOSTNAME}**, **${DOMAIN}**, **${ACCESS_KEY}** and **${EMAIL}** in the field `User Data` of the form.
-
-![Create Instance 2](./images/create_instance_2.png)
-
-### DNS Record
-
-When your machine is started, look at the IP address attributed to your machine (see screenshot below) and create an A record in your DNS with the ${DOMAIN} you furnished before.
-
-![IP address](/Users/alexandredeleze/Documents/pryv/image-exoscale-open-pryv.io/images/ip.png)
-
-## Miscellaneous
+### Miscellaneous
 
 In `openpryv/openpryv.sh`, a function of update is implemented. Each time we reboot the VM, we make a `git fetch`and `git merge`. To avoid problem with the config file, we give the `--strategy-option ours` to merge.
