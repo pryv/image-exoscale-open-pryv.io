@@ -15,7 +15,22 @@ To create a new Instance, click on COMPUTE/INSTANCES and then ADD. You can choos
 
 ![Create Instance 1](./images/create_instance_1.png)
 
-Then select the Security Group `core` and copy the content of the file `PATH_TO_ROOT/user_data.yaml` by replacing **${HOSTNAME}**, **${DOMAIN}**, **${ACCESS_KEY}** and **${EMAIL}** in the field `User Data` of the form.
+Then select the Security Group `core` and copy the content of the snippet bellow by replacing **${HOSTNAME}**, **${DOMAIN}**, **${ACCESS_KEY}** and **${EMAIL}** in the field `User Data` of the form.
+
+```yaml 
+#cloud-config
+write_files:
+- content: |
+    {
+      "DOMAIN": "${DOMAIN}",
+      "EMAIL": "${EMAIL}",
+      "KEY": "${ACCESS_KEY}"
+    }
+  path: /tmp/conf/config.json
+
+runcmd:
+ - node /home/ubuntu/setup.js
+```
 
 ![Create Instance 2](./images/create_instance_2.png)
 
