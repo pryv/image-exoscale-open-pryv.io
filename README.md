@@ -82,7 +82,7 @@ You should see service information similar to one below:
 }
 ```
 
-Follow these steps to start using the platform: [Open Pryv.io - Start](https://github.com/pryv/open-pryv.io#native-1).
+Follow these steps to start using the platform: [Open Pryv.io - Start](https://github.com/pryv/open-pryv.io#start).
 
 ### What next
 
