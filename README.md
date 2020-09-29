@@ -1,4 +1,4 @@
-# Image Open-Pryv.io for Exoscale
+# Open-Pryv.io image for Exoscale
 
 ## Description
 
