@@ -1,5 +1,11 @@
 # Image Open-Pryv.io for Exoscale
 
+## Description
+
+This tutorial will guide you how to 
+- create a new virtual machine (VM)
+- configure VM with the [OpenPryv.io](https://github.com/pryv/open-pryv.io/)
+
 ## Usage
 ### Setup Instance of the image
 
@@ -48,9 +54,22 @@ When your machine is started, look at the IP address attributed to your machine 
 
 During the setup phase, the script will wait until you add the DNS A record. If you want to know the status of the setup, please connect in ssh inside your VM and read the log file `/home/ubuntu/setup.log`.
 
+### Verify
+
+Now your OpenPryv.io platform is running at `https://${HOSTNAME}/` .
+You should see service information similar to one below
+```
+meta	
+    apiVersion	"1.5.24-open"
+    serverTime	1601310027.27
+    serial	"t1601309771"
+cheersFrom	"Pryv API"
+learnMoreAt	"https://api.pryv.com/"
+```
+
 ### What next
 
-You can find the content of [Open-Pryv.io](https://github.com/pryv/open-pryv.io) in the folder `/var/pryv`. You can personalize your Open-Pryv by following the README of the git repo of Open-Pryv.io.
+You can find the content of [Open-Pryv.io](https://github.com/pryv/open-pryv.io) in the folder `/var/pryv/open-pryv.io`. You can personalize your Open-Pryv by following the README of the git repo of Open-Pryv.io.
 
 ## Contribute 
 
