@@ -66,10 +66,12 @@ meta
 cheersFrom	"Pryv API"
 learnMoreAt	"https://api.pryv.com/"
 ```
+You can try register to your api here `https://${HOSTNAME}/www/access/register.html` using [app-web-auth3 interface](https://github.com/pryv/app-web-auth3).
+You can find the content of [Open-Pryv.io](https://github.com/pryv/open-pryv.io) in the folder `/var/pryv/open-pryv.io`. 
 
 ### What next
 
-You can find the content of [Open-Pryv.io](https://github.com/pryv/open-pryv.io) in the folder `/var/pryv/open-pryv.io`. You can personalize your Open-Pryv by following the README of the git repo of Open-Pryv.io.
+You can personalize your Open-Pryv and configure company email by following the [README of the git repo of Open-Pryv.io](https://github.com/pryv/open-pryv.io/).
 
 ## Contribute 
 
