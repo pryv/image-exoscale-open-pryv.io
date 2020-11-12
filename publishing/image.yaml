@@ -9,4 +9,4 @@ uefi: false # true if the template boot using UEFI (optional, default false).
 sshkeyenabled: true # true if the template supports providing an SSH key at deploy time (optional, default false).
 # image: name of the qcow2 image (optional).
 source: https://sos-ch-gva-2.exo.io/open-pryv-templates/openpryv.qcow2 # base URL location for the template. The full link will be source + image
-checksum: d5191c0699569534d868efa46d290fa3 # md5 checksum of the image.
+checksum: 2c494e07364e97bfa0760c71597245b4 # md5 checksum of the image.
