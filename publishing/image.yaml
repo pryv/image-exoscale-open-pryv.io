@@ -1,6 +1,6 @@
 # Sample image-yaml file for publication
-family: Open Pryv.io  #the image distribution, for example Debian. The correct field is provided by Exoscale on the initial push and needs to stay consistent for the full lifetime of the template.
-version: 1.0 #the image variant, for example 9 (Stretch) for debian stretch
+family: Pryv.io  #the image distribution, for example Debian. The correct field is provided by Exoscale on the initial push and needs to stay consistent for the full lifetime of the template.
+version: 1 #the image variant, for example 9 (Stretch) for debian stretch
 name: Open Pryv.io #the image name in Exoscale, for example Linux Debian 9 64-bit
 username: ubuntu #the default username for the template.
 password: true # false if the template doesn’t support password authentication (optional, default true).
