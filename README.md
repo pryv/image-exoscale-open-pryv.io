@@ -100,37 +100,47 @@ You can personalize your Open Pryv.io platform and configure company email by fo
 
 ### How it works
 
-- Image is created with `./build.sh` (linux) or `./build-docker.sh` (Docker based for OSX) 
-- The image contains a set of tasks to be run a boot
-  1. install necessary component
-  2. clone github open-pryv - So the latest version of open-pryv is installed at first boot.
-  3. setup open-pryv dev environment
-  4. build open-pryv
-  5. run open-pryv
-- The image should be uploaded on an http server and published 
+- The image is created with `./build.sh` (linux) or `./build-docker.sh` (Docker based for OSX) 
+- The image contains a set of tasks to be run at boot
+  1. Install necessary components
+  2. Clone Open Pryv.io from Github - So the latest version of Open Pryv.io is installed at first boot
+  3. Setup Open Pryv.io environment
+  4. Build Open Pryv.io
+  5. Run Open Pryv.io
+- The image should be uploaded on a HTTP server and published
 
-### Requirements 
+### Requirements
 
-- An exoscale account on exoscale with a registered SSH key without a password (for the examples `~/.ssh/exo.pub`)
+- An exoscale account on exoscale with a registered SSH key without a password (in the examples `~/.ssh/exo.pub`, `~/.ssh/exo`)
 - To upload the image on exoscale:
   - a "bucket" in "storage" (for the example `open-pryv-templates`)
-- [Exoscale Cli](https://github.com/exoscale/cli) installed with an **IAM API key** with **write** permission on the bucket. (In the example it's installed under ./cli/) 
+- [Exoscale Cli](https://github.com/exoscale/cli) installed with an **IAM API key** with **write** permission on the bucket. (In the example it's installed under ./cli/)
 - On **OSX** you need to have [Docker](https://docs.docker.com/docker-for-mac/install/) installed.
 
 ### Build Image
 
-To modify the image or add modules, you can modify the file `openpryv/script.sh` and/or add files in `openpryv` and add them in the build by modifying `openpryv/packer.json`.
+To modify the image or add modules, you can modify the file `openpryv/script.sh` and/or add files in `openpryv/` and add them in the build by modifying `openpryv/packer.json`.
 
-To build a new image, use the SSK key registered in Exoscale (for example `~/.ssh/exo.pub`and `~/.ssh/exo`).
-  *be patient, it can be fairly long ...*
-  - On MacOS, you have to start a docker deamon and run at the root of the project `PACKER_PUBLIC_KEY=~/.ssh/exo.pub PACKER_PRIVATE_KEY=~/.ssh/exo ./build-docker.sh OPENPRYV`.
-  - On Linux, at the root run `PACKER_PUBLIC_KEY=~/.ssh/exo.pub PACKER_PRIVATE_KEY=~/.ssh/exo ./build.sh OPENPRYV`.
+To build a new image, use the SSH key registered in Exoscale (for example `~/.ssh/exo.pub`and `~/.ssh/exo`).  
+*be patient, it can be fairly long*
+
+- On MacOS, you have to start a docker daemon and run at the root of the project: 
+  
+```bash
+PACKER_PUBLIC_KEY=~/.ssh/exo.pub PACKER_PRIVATE_KEY=~/.ssh/exo ./build-docker.sh OPENPRYV
+```
+
+- On Linux, at the root of the project run: 
+
+```bash
+PACKER_PUBLIC_KEY=~/.ssh/exo.pub PACKER_PRIVATE_KEY=~/.ssh/exo ./build.sh OPENPRYV
+```
 
 ### Upload Image on Exoscale Bucket
 
 Using Exoscale CLI: `path_to_exoscale_cli/exo sos upload open-pryv-templates ./output-qemu/openpryv.qcow2`
 
-Then you can connect to the  [Exoscale Console](https://portal.exoscale.com/) and go to Storage. Click on your bucket and you can normally see `openpryv.qcow2`. 
+Then you can connect to the  [Exoscale Console](https://portal.exoscale.com/) and go to Storage. Click on your bucket and you can normally see `openpryv.qcow2`.
 
 ### References
 
@@ -145,7 +155,7 @@ Note that you have to create a new template for each data center you want to use
 
 ![Create template](./images/create_template.png)
 
-## Market place
+## Marketplace
 
-- Informations on the [Marketplace & Templates](https://community.exoscale.com/documentation/vendor/marketplace-templates/)
-- Templates [Technical Requirements](https://community.exoscale.com/documentation/vendor/marketplace-templates-tech-requirements/)
+- Informations on the [Marketplace & Templates](https://community.exoscale.com/documentation/vendor/marketplace-templates/)  
+- Templates [Technical Requirements](https://community.exoscale.com/documentation/vendor/marketplace-templates-tech-requirements/)  
