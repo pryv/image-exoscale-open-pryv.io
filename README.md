@@ -136,6 +136,8 @@ PACKER_PUBLIC_KEY=~/.ssh/exo.pub PACKER_PRIVATE_KEY=~/.ssh/exo ./build-docker.sh
 PACKER_PUBLIC_KEY=~/.ssh/exo.pub PACKER_PRIVATE_KEY=~/.ssh/exo ./build.sh OPENPRYV
 ```
 
+On success the image will be created in `./output-qemu/openpryv.qcow2`
+
 ### Upload Image on Exoscale Bucket
 
 Using Exoscale CLI: `path_to_exoscale_cli/exo sos upload open-pryv-templates ./output-qemu/openpryv.qcow2`
@@ -149,7 +151,7 @@ Creating Custom Templates [Using Packer](https://www.exoscale.com/syslog/creatin
 To create a template, you have to host the image on a publicly accessible HTTPS service such as Exoscale [Object Storage](https://community.exoscale.com/documentation/storage/), as you will need to indicate a URL pointing to it during template registration. Click on it, and at the bottom of the page, click on `Quick ACL` and then on `public read`.
 
 
-To create a new template, you have to connect to your [Exoscale Console](https://portal.exoscale.com/), and go to Compute/Templates. You can select the data center of your choice and click on `register`. Then you can indicate the name of the template and the description. You add also the URL to the image and the md5 of the image (run `md5 PATH_TO_ROOT/output-qemu/openpryv.qcow2`). The username is `ubuntu`.
+To create a new template, you have to connect to your [Exoscale Console](https://portal.exoscale.com/), and go to Compute/Templates. You can select the data center of your choice and click on `register`. Then you can indicate the name of the template and the description. You add also the URL to the image and the md5 of the image (run `md5 ./output-qemu/openpryv.qcow2`). The username is `ubuntu`.
 
 Note that you have to create a new template for each data center you want to use.
 
