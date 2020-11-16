@@ -20,7 +20,7 @@ This tutorial will guide you to:
 
 To create new Firewall rules, go to COMPUTE>FIREWALLING and then click on the ADD button. You can create the group `pryv` and click on CREATE. You can then select the group `pryv` and add new rules as shown on the screenshot below.
 
-![Firewall](./images/firewall.png)
+![Firewall](./docs/images/firewall.png)
 
 - TCP 443 is necessary for HTTPS
 - TCP 80 is handy for HTTP to HTTPS redirection
@@ -30,7 +30,7 @@ To create new Firewall rules, go to COMPUTE>FIREWALLING and then click on the AD
 
 To create a new instance, go to COMPUTE>INSTANCES and then click on the ADD button. You can choose the hostname of the machine and build the configuration as shown on the screenshot below.
 
-![Create Instance 1](./images/create_instance_1.png)
+![Create Instance 1](./docs/images/create_instance_1.png)
 
 Then select the Security Group `pryv` and copy the **whole** content of the snippet (you need to include `#cloud-config`) below replacing **${HOSTNAME}**, **${SECRET_KEY}** and **${EMAIL}** in the field `User Data` of the form.  
 
@@ -53,13 +53,13 @@ runcmd:
  - node /home/ubuntu/setup.js
 ```
 
-![Create Instance 2](./images/create_instance_2.png)
+![Create Instance 2](./docs/images/create_instance_2.png)
 
 #### DNS Record
 
 Once your machine is started, look at the IP address attributed to your machine (see screenshot below) and create an A record in your DNS zone with the ${HOSTNAME} you furnished before.
 
-![IP address](./images/ip.png)
+![IP address](./docs/images/ip.png)
 
 ### Log
 
@@ -155,7 +155,7 @@ To create a new template, you have to connect to your [Exoscale Console](https:/
 
 Note that you have to create a new template for each data center you want to use.
 
-![Create template](./images/create_template.png)
+![Create template](./docs/images/create_template.png)
 
 ## Marketplace
 

@@ -6,5 +6,5 @@ relative_links:
   enabled: true
   collections: true
 include:
-  - INSTALL_MARKETPLACE.md
+  - INDEX.md
 lsi: false
