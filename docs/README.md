@@ -1,4 +1,6 @@
-# Open-Pryv.io image for Exoscale
+# Open-Pryv.io template for Exoscale
+
+On this page you find the necessary information to deploy [Open Pryv.io](https://github.com/pryv/open-pryv.io) from Exoscale's [Marketplace](https://www.exoscale.com/marketplace/)
 
 ## Preparation
 

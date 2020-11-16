@@ -161,3 +161,10 @@ Note that you have to create a new template for each data center you want to use
 
 - Informations on the [Marketplace & Templates](https://community.exoscale.com/documentation/vendor/marketplace-templates/)  
 - Templates [Technical Requirements](https://community.exoscale.com/documentation/vendor/marketplace-templates-tech-requirements/)  
+
+## Publishing Market place documentation page. 
+
+A short documentation on how to deploy the image is published on `gh-pages`.  
+The source for this page is located in `./docs/` directory and the paged is build by **jekyll** based on `./docs/README.md`
+
+It will be updated based on the latest version in the `master` branch and accesible by [https://pryv.github.io/image-exoscale-open-pryv.io/](https://pryv.github.io/image-exoscale-open-pryv.io/)
