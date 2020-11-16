@@ -1,4 +1,5 @@
-title: Open Pryv.io image for Exoscale's market place
+name: Open Pryv.io image for Exoscale's market place
+title: null
 plugins:
   - jekyll-relative-links
 relative_links:
