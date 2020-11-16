@@ -1,6 +1,6 @@
 # Open-Pryv.io template for Exoscale
 
-On this page you find the necessary information to deploy [Open Pryv.io](https://github.com/pryv/open-pryv.io) from Exoscale's [Marketplace](https://www.exoscale.com/marketplace/)
+On this page you will find all the necessary information to deploy [Open Pryv.io](https://github.com/pryv/open-pryv.io) from Exoscale's [Marketplace](https://www.exoscale.com/marketplace/).
 
 ## Preparation
 
@@ -27,7 +27,7 @@ Select "Open Pryv.io" in the template list and adapt the instance type as per yo
 Then select the Security Group `pryv` and copy the **whole** content of the snippet (you need to include `#cloud-config`) below replacing **${HOSTNAME}**, **${SECRET_KEY}** and **${EMAIL}** in the field `User Data` of the form.  
 
 - **${HOSTNAME}** : Hostname on which your Open-Pryv.io platform is exposed. You will need to define a DNS A record for this hostname.
-- **${SECRET_KEY}** : This key must be randomly generated and is used as the admin access key
+- **${SECRET_KEY}** : This key must be randomly generated and is used as the admin access key.
 - **${EMAIL}** : This email is only used by Letsencrypt to give you information about your certificate and for recovery purposes ([Link to Letsencrypt](https://letsencrypt.org/fr/privacy/#subscriber)).
 
 ```yaml 
