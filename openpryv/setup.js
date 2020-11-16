@@ -1,12 +1,20 @@
 let fs = require('fs');
 const { execSync } = require("child_process");
 
-
 const nginxPath = '/etc/nginx/sites-enabled/default';
-const pryvPath = '/var/pryv/open-pryv.io';
+
+const pryvBasePath = '/var/pryv';
+const pryvPath = pryvBasePath + '/open-pryv.io';
+const logFile = '/home/ubuntu/setup.log';
 
 log('Fetch new version of Open-Pryv.io');
-execSync(`git -C ${pryvPath} pull`)
+execSync(`git -C ${pryvBasePath} clone https://github.com/pryv/open-pryv.io.git  >> ${logFile} 2>&1`);
+
+log('Setup Dev environement of Open-Pryv.io');
+execSync(`yes | yarn --cwd ${pryvPath} setup  >> ${logFile} 2>&1`);
+
+log('Build Open-Pryv.io');
+execSync(`yes | yarn --cwd ${pryvPath} release  >> ${logFile} 2>&1`);
 
 const setupCmd = `
 mv /home/ubuntu/default ` + nginxPath + `;
@@ -17,7 +25,7 @@ mv /home/ubuntu/openpryv.service /etc/systemd/system/openpryv.service;
 chmod 644 /etc/systemd/system/openpryv.service;
 `;
 
-execSync(setupCmd);
+execSync(setupCmd + ` >> ${logFile}`);
 log("Copy files and modify permissions")
 
 let confFile = JSON.parse(fs.readFileSync('/tmp/conf/config.json', 'utf8'));
@@ -46,7 +54,10 @@ log("Start to wait for DNS A record")
 let host = -1;
 let record = 0;
 while (host != record) {
-    log("Wait ...")
+    log(`Wait ... for DNS to resolve ${confFile.HOSTNAME}`);
+    if (host !== -1) {
+        execSync(`sleep 10`);
+    }
     host = execSync(`hostname -i | awk '{print $1}'`).toString();
     record = execSync(`dig @8.8.8.8 ${confFile.HOSTNAME} +short`).toString(); //@8.8.8.8 to force to refresh cache
 }
@@ -62,8 +73,9 @@ execSync(cmdCert);
 log("Letsencrypt done");
 log("setup done!")
 
+
 function log(info) {
     const date = new Date();
-    execSync(`echo "${date.toUTCString()} ${info}" >> /home/ubuntu/setup.log`)
+    execSync(`echo "########## ${date.toUTCString()} ${info} ##########" >> ${logFile}`)
 }
 

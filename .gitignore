@@ -2,4 +2,5 @@
 openpryv/user-data
 output-qemu/
 packer_cache/
+cli/
 seed.img
