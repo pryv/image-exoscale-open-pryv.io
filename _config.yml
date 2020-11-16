@@ -1,3 +1,4 @@
+title: Open Pryv.io image for Exoscale's market place
 plugins:
   - jekyll-relative-links
 relative_links:
@@ -5,3 +6,4 @@ relative_links:
   collections: true
 include:
   - INSTALL_MARKETPLACE.md
+lsi: false
