@@ -6,11 +6,11 @@ On this page you will find all the necessary information to deploy [Open Pryv.io
 
 ### Hostname
 
-A hostname to be associated with the machine (DNS A record), this is required to set-up the SSL termination to the service.
+A hostname to be associated with the machine (DNS A record) is required to set-up the SSL termination to the service.
 
-During the installation, you need to know the `hostname` to be assigned to this machine. The setup process will wait for the IP address to be assignated to a A record on your DNS to be completed.
+During the installation, you need to know the `hostname` to be assigned to this machine. The setup process will wait for the IP address to be assignated to an A record on your DNS to be completed.
 
-### Firewall rule
+### Firewall rules
 
 To create new Firewall rules, go to COMPUTE>FIREWALLING and then click on the ADD button. You can create the group `pryv` and click on CREATE. You can then select the group `pryv` and add new rules as shown on the screenshot below.
 
@@ -82,6 +82,6 @@ You should get a service information similar to the one below:
 
 Follow these steps to start using the platform: [Open Pryv.io - Start](https://github.com/pryv/open-pryv.io#start).
 
-### What next
+### Next steps
 
-You can personalize your Open Pryv.io platform and configure company email by following the [README of the git repo of Open-Pryv.io](https://github.com/pryv/open-pryv.io/).
+You can customize your Open Pryv.io platform and configure company email by following the [README of the git repo of Open-Pryv.io](https://github.com/pryv/open-pryv.io/).
