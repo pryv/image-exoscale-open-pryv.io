@@ -1,6 +1,8 @@
 # Open-Pryv.io template for Exoscale
 
 On this page you will find all the necessary information to deploy [Open Pryv.io](https://github.com/pryv/open-pryv.io) from Exoscale's [Marketplace](https://www.exoscale.com/marketplace/).
+The template is described [here](https://www.exoscale.com/marketplace/listing/open-pryv-io/) and you can launch it instantaneously with minimal start-up configuration from [here](https://portal.exoscale.com/compute/instances/add?template-name=Open%20Pryv&instance-type=Small&os-group=other&disk=20).
+
 
 ## Preparation
 
