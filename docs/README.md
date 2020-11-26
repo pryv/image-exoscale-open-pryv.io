@@ -3,6 +3,14 @@
 On this page you will find all the necessary information to deploy [Open Pryv.io](https://github.com/pryv/open-pryv.io) from Exoscale's [Marketplace](https://www.exoscale.com/marketplace/).
 The template is described [here](https://www.exoscale.com/marketplace/listing/open-pryv-io/) and you can launch it instantaneously from [here](https://portal.exoscale.com/compute/instances/add?template-name=Open%20Pryv&instance-type=Small&os-group=other&disk=20) by following the guidelines below.
 
+A
+[button url="http://www.google.com"]
+B
+{% include button.html url="http://www.google.com" %}
+C
+<button name="button" onclick="http://www.google.com">Click me</button>
+D
+[Click me](http://www.google.com){: .btn}
 
 ## Preparation
 
