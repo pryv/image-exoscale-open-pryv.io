@@ -5,7 +5,7 @@ On this page you will find all the necessary information to deploy [Open Pryv.io
 Please read the following document before launching your first instance.
 
 <center>
-<button name="button" onclick="https://portal.exoscale.com/compute/instances/add?template-name=Open%20Pryv&instance-type=Small&os-group=other&disk=20">Launch Open Pryv.io on Exoscale</button><br>
+<button name="button" onclick="window.location.href='https://portal.exoscale.com/compute/instances/add?template-name=Open%20Pryv&instance-type=Small&os-group=other&disk=20'">Launch Open Pryv.io on Exoscale</button><br>
 (requires an exoscale account)
 </center>
 
