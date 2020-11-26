@@ -5,8 +5,7 @@ The template is described [here](https://www.exoscale.com/marketplace/listing/op
 
 A
 [button url="http://www.google.com"]
-B
-{% include button.html url="http://www.google.com" %}
+
 C
 <button name="button" onclick="http://www.google.com">Click me</button>
 D
