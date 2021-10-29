@@ -43,8 +43,8 @@
         },
         {
             "type": "file",
-            "source": "{{user `image_name`}}/config.json",
-            "destination": "/home/ubuntu/config.json"
+            "source": "{{user `image_name`}}/config.yml",
+            "destination": "/home/ubuntu/config.yml"
         },
         {
             "type": "file",

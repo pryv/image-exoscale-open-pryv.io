@@ -18,7 +18,7 @@ execSync(`yes | yarn --cwd ${pryvPath} release  >> ${logFile} 2>&1`);
 
 const setupCmd = `
 mv /home/ubuntu/default ` + nginxPath + `;
-mv /home/ubuntu/config.json ` + pryvPath + `/config.json;
+mv /home/ubuntu/config.yml ` + pryvPath + `/config.yml;
 mv /home/ubuntu/openpryv.sh /usr/bin/openpryv.sh;
 chmod +x /usr/bin/openpryv.sh;
 mv /home/ubuntu/openpryv.service /etc/systemd/system/openpryv.service;
@@ -29,15 +29,15 @@ execSync(setupCmd + ` >> ${logFile}`);
 log("Copy files and modify permissions")
 
 let confFile = JSON.parse(fs.readFileSync('/tmp/conf/config.json', 'utf8'));
-let config = fs.readFileSync(pryvPath + "/config.json", 'utf8');
+let config = fs.readFileSync(pryvPath + "/config.yml", 'utf8');
 let nginx = fs.readFileSync(nginxPath, 'utf8');
 const regexHostname = /\${HOSTNAME}/gi;
 const regexKey = /\${RANDOM_KEY}/gi;
 
 config = config.replace(regexHostname, confFile.HOSTNAME);
 config = config.replace(regexKey, confFile.KEY);
-fs.writeFileSync(pryvPath + "/config.json", config);
-log("Modify " + pryvPath + "/config.json");
+fs.writeFileSync(pryvPath + "/config.yml", config);
+log("Modify " + pryvPath + "/config.yml");
 
 nginx = nginx.replace(regexHostname, confFile.HOSTNAME);
 fs.writeFileSync(nginxPath, nginx);
