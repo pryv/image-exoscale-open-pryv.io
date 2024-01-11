@@ -1,4 +1,4 @@
 #!/bin/bash
 
 # Start Open-Pryv.io
-yarn --cwd /var/pryv/open-pryv.io pryv
+npm --path /var/pryv/open-pryv.io run pryv
