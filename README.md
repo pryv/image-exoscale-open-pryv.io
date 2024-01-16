@@ -86,7 +86,7 @@ You should get a service information similar to the one below:
     "serial": "t1591793506"
   },
   "cheersFrom": "Pryv API",
-  "learnMoreAt": "https://api.pryv.com/"
+  "learnMoreAt": "https://pryv.github.io/"
 }
 ```
 
