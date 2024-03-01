@@ -1,0 +1,6 @@
+#cloud-config
+
+# Packer SSH public key (<-> env:PACKER_PRIVATE_KEY)
+# Fingerprint: 256 SHA256:< YOUR FINGERPRINT GOES HERE> (ED25519)
+ssh_authorized_keys:
+  - "ssh-ed25519 < YOUR KEY GOES HERE IF YOU DO NOT USE THE ENVIRONMENT VARIABLE> packer"
