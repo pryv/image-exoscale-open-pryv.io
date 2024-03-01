@@ -1,76 +1,77 @@
 {
-      "variables": {
-          "image_url": "https://cloud-images.ubuntu.com/bionic/current/bionic-server-cloudimg-amd64.img",
-          "image_checksum_url": "https://cloud-images.ubuntu.com/bionic/current/SHA256SUMS",
-          "image_checksum_type": "sha256",
-          "image_name": "openpryv",
-          "ssh_private_key_file": "{{env `PACKER_PRIVATE_KEY`}}"
-      },
+    "variables": {
+      "image_checksum_type": "sha256",
+      "image_checksum_url": "https://cloud-images.ubuntu.com/jammy/current/SHA256SUMS",
+      "image_name": "openpryv",
+      "image_url": "https://cloud-images.ubuntu.com/jammy/current/jammy-server-cloudimg-amd64.img",
+      "ssh_private_key_file": "{{env `PACKER_PRIVATE_KEY`}}",
+      "image_output_file": "output-qemu/{{user `image_name`}}.qcow2"
+    },
     "builders": [
-        {
-            "type": "qemu",
-            "iso_url": "{{user `image_url`}}",
-            "iso_checksum_url": "{{user `image_checksum_url`}}",
-            "iso_checksum_type": "{{user `image_checksum_type`}}",
-            "shutdown_command": "rm -rf /home/ubuntu/.ssh/authorized_keys && sudo rm -rf /root/.ssh/authorized_keys && echo 'packer' | sudo -S shutdown -P now",
-            "disk_size": 10240,
-            "disk_compression": true,
-            "format": "qcow2",
-            "communicator": "ssh",
-            "ssh_username": "ubuntu",
-            "ssh_private_key_file": "{{user `ssh_private_key_file`}}",
-            "ssh_timeout": "20m",
-            "ssh_port": 22,
-            "disk_image": true,
-            "vm_name": "{{user `image_name`}}.qcow2",
-            "use_default_display": true,
-            "disk_interface": "virtio",
-            "vnc_port_min": 5910,
-            "vnc_port_max": 5920,
-            "qemuargs": [
-                ["-fda", "seed.img"]]
-        }
+      {
+        "communicator": "ssh",
+        "disk_compression": true,
+        "disk_image": true,
+        "disk_interface": "virtio",
+        "disk_size": "10240M",
+        "format": "qcow2",
+        "iso_checksum": "file:{{user `image_checksum_url`}}",
+        "iso_url": "{{user `image_url`}}",
+        "qemuargs": [
+            ["-drive", "file=output-qemu/{{user `image_name`}}.qcow2,format=qcow2,if=virtio"],
+            ["-drive", "file=seed.img,format=raw,if=virtio"],
+            ["-display", "none"]
+        ],
+        "net_device": "virtio-net",
+        "shutdown_command": "rm -rf /home/ubuntu/.ssh/authorized_keys \u0026\u0026 sudo rm -rf /root/.ssh/authorized_keys \u0026\u0026 echo 'packer' | sudo -S shutdown -P now",
+        "ssh_private_key_file": "{{user `ssh_private_key_file`}}",
+        "ssh_username": "ubuntu",
+        "type": "qemu",
+        "use_default_display": true,
+        "vm_name": "{{user `image_name`}}.qcow2"
+      }
     ],
     "provisioners": [
-        {"type": "file",
-         "source": "{{user `image_name`}}/cloud-init",
-         "destination": "/tmp"
-        },
-        {
-            "type": "file",
-            "source": "{{user `image_name`}}/setup.js",
-            "destination": "/home/ubuntu/setup.js"
-        },
-        {
-            "type": "file",
-            "source": "{{user `image_name`}}/config.yml",
-            "destination": "/home/ubuntu/config.yml"
-        },
-        {
-            "type": "file",
-            "source": "{{user `image_name`}}/default",
-            "destination": "/home/ubuntu/default"
-        },
-        {
-            "type": "file",
-            "source": "{{user `image_name`}}/openpryv.sh",
-            "destination": "/home/ubuntu/openpryv.sh"
-        },
-        {
-            "type": "file",
-            "source": "{{user `image_name`}}/openpryv.service",
-            "destination": "/home/ubuntu/openpryv.service"
-        },
-        {
-            "type": "shell",
-            "execute_command": "chmod +x {{.Path}}; sudo {{.Path}}",
-            "scripts": [
-                "scripts/cloud-password-module.sh",
-                "scripts/grub-exoscale.sh",
-                "scripts/lock-root.sh",
-                "{{user `image_name`}}/script.sh",
-                "scripts/cloud-cleanup.sh"
-            ]
-        }
+      {
+        "destination": "/tmp",
+        "source": "{{user `image_name`}}/cloud-init",
+        "type": "file"
+      },
+      {
+        "destination": "/home/ubuntu/setup.js",
+        "source": "{{user `image_name`}}/setup.js",
+        "type": "file"
+      },
+      {
+        "destination": "/home/ubuntu/config.yml",
+        "source": "{{user `image_name`}}/config.yml",
+        "type": "file"
+      },
+      {
+        "destination": "/home/ubuntu/default",
+        "source": "{{user `image_name`}}/default",
+        "type": "file"
+      },
+      {
+        "destination": "/home/ubuntu/openpryv.sh",
+        "source": "{{user `image_name`}}/openpryv.sh",
+        "type": "file"
+      },
+      {
+        "destination": "/home/ubuntu/openpryv.service",
+        "source": "{{user `image_name`}}/openpryv.service",
+        "type": "file"
+      },
+      {
+        "execute_command": "chmod +x {{.Path}}; sudo {{.Path}}",
+        "scripts": [
+          "scripts/cloud-password-module.sh",
+          "scripts/grub-exoscale.sh",
+          "scripts/lock-root.sh",
+          "{{user `image_name`}}/script.sh",
+          "scripts/cloud-cleanup.sh"
+        ],
+        "type": "shell"
+      }
     ]
-}
+  }

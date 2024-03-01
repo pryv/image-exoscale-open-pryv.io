@@ -81,12 +81,12 @@ You should get a service information similar to the one below:
 ```
 {
   "meta": {
-    "apiVersion": "1.5.24-open",
+    "apiVersion": "1.9.0-open",
     "serverTime": 1601379119.307,
     "serial": "t1591793506"
   },
   "cheersFrom": "Pryv API",
-  "learnMoreAt": "https://api.pryv.com/"
+  "learnMoreAt": "https://pryv.github.io/"
 }
 ```
 
@@ -144,6 +144,10 @@ Using Exoscale CLI: `path_to_exoscale_cli/exo sos upload open-pryv-templates ./o
 
 Then you can connect to the  [Exoscale Console](https://portal.exoscale.com/) and go to Storage. Click on your bucket and you can normally see `openpryv.qcow2`.
 
+### misc 
+
+Apply license to content with: `npx source-licenser --config-file .licenser.yml ./`
+
 ### References
 
 Creating Custom Templates [Using Packer](https://www.exoscale.com/syslog/creating-custom-templates-using-packer/)
@@ -167,4 +171,8 @@ Note that you have to create a new template for each data center you want to use
 A short documentation on how to deploy the image is published on `gh-pages`.  
 The source for this page is located in `./docs/` directory and the paged is build by **jekyll** based on `./docs/README.md`
 
-It will be updated based on the latest version in the `master` branch and accesible by [https://pryv.github.io/image-exoscale-open-pryv.io/](https://pryv.github.io/image-exoscale-open-pryv.io/)
+It will be updated based on the latest version in the `master` branch and accesible by [https://pryv.github.io/ops-image-exoscale-open-pryv.io/](https://pryv.github.io/ops-image-exoscale-open-pryv.io/)
+
+# License
+
+[BSD-3-Clause](LICENSE)
