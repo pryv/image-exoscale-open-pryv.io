@@ -72,8 +72,8 @@ fi
 
 public_key=$(cat ${PACKER_PUBLIC_KEY})
 
-ulimit -H -n 65535
-ulimit -S -n 65535
+#ulimit -H -n 65535
+#ulimit -S -n 65535
 
 # generate cloud init user data
 cat <<EOF > ${image}/user-data

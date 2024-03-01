@@ -1,7 +1,7 @@
 FROM ubuntu:latest
 
-ARG PACKER_VERSION="1.3.5"
-ARG PACKER_SHA256SUM="14922d2bca532ad6ee8e936d5ad0788eba96f773bcdcde8c2dc7c95f830841ec"
+ARG PACKER_VERSION="1.6.6"
+ARG PACKER_SHA256SUM="721d119fd70e38d6f2b4ccd8a39daf6b4d36bf5f7640036acafcaaa967b00c3b"
 
 RUN apt-get update && apt-get install -y qemu-system-x86 \
     qemu-utils wget busybox \
