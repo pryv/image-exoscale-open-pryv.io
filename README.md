@@ -119,21 +119,23 @@ You can personalize your Open Pryv.io platform and configure company email by fo
 
 ### Build Image
 
-To modify the image or add modules, you can modify the file `openpryv/script.sh` and/or add files in `openpryv/` and add them in the build by modifying `openpryv/packer.json`.
-
-To build a new image, use the SSH key registered in Exoscale (for example `~/.ssh/exo.pub`and `~/.ssh/exo`).  
-*be patient, it can be fairly long*
+To modify the image or add modules, you can modify the file `openpryv/script.sh` and/or add files in `openpryv/` and add them in the build by modifying `openpryv/build.pkr.hcl`.
 
 - On MacOS, you have to start a docker daemon and run at the root of the project: 
+
+Warning! with Ubuntu 22.04 and Packer 1.6.6 use ssh keys generated with eliptic curves (not RSA)
+with: `ssh-keygen -t ed25519` 
+
+The `build.sh` scripts takes care of creating a usable ssk key and the subsequent `user-data` and `seed.img` all stored in `./secrets` 
   
 ```bash
-PACKER_PUBLIC_KEY=~/.ssh/exo.pub PACKER_PRIVATE_KEY=~/.ssh/exo ./build-docker.sh OPENPRYV
+./build-docker.sh 
 ```
 
 - On Linux, at the root of the project run: 
 
 ```bash
-PACKER_PUBLIC_KEY=~/.ssh/exo.pub PACKER_PRIVATE_KEY=~/.ssh/exo ./build.sh OPENPRYV
+./build.sh 
 ```
 
 On success the image will be created in `./output-qemu/openpryv.qcow2`

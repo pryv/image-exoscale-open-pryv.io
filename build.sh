@@ -1,62 +1,6 @@
 #!/bin/bash
 
-if [[ -t 0 ]]; then
-    INTERACTIVE=1
-else
-    INTERACTIVE=0
-fi
-
-function error() {
-    if [ "$INTERACTIVE" -eq 1 ]; then
-        echo -e "\e[91m${1}\e[0m" >&2
-    else
-        echo $1 >&2
-    fi
-}
-
-function usage() {
-    echo "" >&2
-    echo "Usage: PACKER_PUBLIC_KEY=~/.ssh/id_rsa.pub PACKER_PRIVATE_KEY=~/.ssh/id_rsa build.sh IMAGE" >&2
-    echo "" >&2
-    echo "  IMAGE: the name of the subdirectory to build" >&2
-    echo "" >&2
-    echo "Required software:" >&2
-    echo " - packer" >&2
-    echo " - cloud image utils" >&2
-    echo "" >&2
-}
-
-image=$1
-
-if [ -z "$image" ]; then
-    error "Error: missing image name argument."
-    usage
-    exit 1
-fi
-
-if [ -z "$PACKER_PUBLIC_KEY" ]; then
-    error "Error: missing PACKER_PUBLIC_KEY environment variable."
-    usage
-    exit 1
-fi
-
-if [ -z "$PACKER_PRIVATE_KEY" ]; then
-    error "Error: missing PACKER_PRIVATE_KEY environment variable."
-    usage
-    exit 1
-fi
-
-if [ ! -f "$PACKER_PUBLIC_KEY" ]; then
-    error "Error: packer public key not readable: $PACKER_PUBLIC_KEY"
-    usage
-    exit 1
-fi
-
-if [ ! -f "$PACKER_PRIVATE_KEY" ]; then
-    error "Error: packer private key not readable: $PACKER_PRIVATE_KEY"
-    usage
-    exit 1
-fi
+IMAGE="openpryv"
 
 if [ -z "$(which cloud-localds)" ]; then
     error "Error: could not find cloud-localds. Please install the cloud image utilities."
@@ -70,19 +14,36 @@ if [ -z "$(which packer)" ]; then
     exit 1
 fi
 
-public_key=$(cat ${PACKER_PUBLIC_KEY})
+# change directory to script location
+cd "$(dirname "$0")"
 
 #ulimit -H -n 65535
 #ulimit -S -n 65535
 
+# Generate an local ssh key used in the building process
+# using ed25519 type of keys as rsa was hanging the process
+
+PACKER_PRIVATE_KEY="./secrets/id_ed25519"
+PACKER_PUBLIC_KEY="./secrets/id_ed25519.pub"
+PACKER_USER_DATA="./secrets/user-data"
+PACKER_SEED_IMG="./secrets/seed.img"
+
+if [ ! -d "./secrets" ]; then mkdir ./secrets ; fi
+
+if [ ! -f ${PACKER_PRIVATE_KEY} ]; then ssh-keygen -N '' -t ed25519 -f ${PACKER_PRIVATE_KEY} ; fi
+
+if [ ! -f ${PACKER_USER_DATA} ];
+then 
+public_key=$(cat ${PACKER_PUBLIC_KEY})
 # generate cloud init user data
-cat <<EOF > ${image}/user-data
+cat <<EOF > ${PACKER_USER_DATA}
 #cloud-config
 ssh_authorized_keys:
-  - "${public_key}"
+- "${public_key}"
 EOF
+fi
 
 # build cloud init disk
-if [ -f ${image}/user-data ]; then cloud-localds seed.img ${image}/user-data; fi
+if [ ! -f ${PACKER_SEED_IMG} ]; then cloud-localds ${PACKER_SEED_IMG} ${PACKER_USER_DATA} ; fi
 
-packer build ${image}/packer.json
+packer build ./${IMAGE}/

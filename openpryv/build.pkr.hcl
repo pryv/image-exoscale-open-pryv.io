@@ -33,7 +33,7 @@ source "qemu" "image" {
   qemuargs = [
     ["-cpu", "qemu64,rdrand=on"],
     ["-drive", "file=${path.cwd}/output-qemu/${local.image}.qcow2,format=qcow2,if=virtio"],
-    ["-drive", "file=${path.cwd}/seed.img,format=raw,if=virtio"]
+    ["-drive", "file=${path.cwd}/secrets/seed.img,format=raw,if=virtio"]
   ]
   memory   = 1024
   # (disk)
@@ -74,6 +74,17 @@ build {
     destination = "/tmp/"
   }
 
+  provisioner "file" {
+    destination = "/home/ubuntu/"
+    sources = [
+      "${local.image}/config.yml",
+      "${local.image}/default",
+      "${local.image}/openpryv.sh",
+      "${local.image}/setup.js",
+      "${local.image}/openpryv.service"
+    ]
+  }
+
   # Shell
   # REF: https://www.packer.io/docs/provisioners/shell
   provisioner "shell" {
@@ -82,6 +93,7 @@ build {
       "${path.cwd}/scripts/motd-news-telemetry-disable.sh",
       "${path.cwd}/scripts/grub-exoscale.sh",
       "${path.cwd}/scripts/apt-dist-upgrade.sh",
+      "${local.image}/script.sh",
       "${path.cwd}/scripts/apt-cleanup.sh",
       "${path.cwd}/scripts/cloud-cleanup.sh",
       "${path.cwd}/scripts/dhcp-cleanup.sh",

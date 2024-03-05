@@ -1,14 +1,20 @@
 #!/bin/sh
+SCRIPT="${0##*/}"
 
-set -e
+## cloud-init cleanup/reset
+echo "INFO[${SCRIPT}]: Cleaning-up (resetting) cloud-init ..."
 
-# cloud init: move files and change permissions
-mv /tmp/cloud-init/* /etc/cloud/cloud.cfg.d/
+# kill any running cloud-init instance before messing with it
+pkill cloud-init
+
+# move custom (Packer-ed) configuration files and change permissions
+mv -v /tmp/cloud-init/* /etc/cloud/cloud.cfg.d/
 chown -R root:root /etc/cloud/cloud.cfg.d/
 
 # cleanup cloud-init data
+cloud-init clean
+mkdir -p /var/lib/cloud
 rm -rf /var/lib/cloud/*
-
 ln -s /var/lib/cloud/instances /var/lib/cloud/instance
 
 # cleanup cloud-init logs
