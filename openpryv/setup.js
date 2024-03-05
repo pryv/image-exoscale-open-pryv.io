@@ -21,7 +21,7 @@ log('Build Open-Pryv.io');
 execSync(`yes | npm --path ${pryvPath} install  >> ${logFile} 2>&1`);
 
 const setupCmd = `
-mv /home/ubuntu/default ` + nginxPath + `;
+mv /home/ubuntu/nginx_conf ` + nginxPath + `;
 mv /home/ubuntu/config.yml ` + pryvPath + `/config.yml;
 mv /home/ubuntu/openpryv.sh /usr/bin/openpryv.sh;
 chmod +x /usr/bin/openpryv.sh;

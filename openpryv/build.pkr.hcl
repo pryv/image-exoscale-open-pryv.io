@@ -78,7 +78,7 @@ build {
     destination = "/home/ubuntu/"
     sources = [
       "${local.image}/config.yml",
-      "${local.image}/default",
+      "${local.image}/nginx_conf",
       "${local.image}/openpryv.sh",
       "${local.image}/setup.js",
       "${local.image}/openpryv.service"
@@ -90,17 +90,17 @@ build {
   provisioner "shell" {
     execute_command = "chmod +x {{.Path}}; sudo {{.Path}}"
     scripts         = [
-      "${path.cwd}/scripts/motd-news-telemetry-disable.sh",
-      "${path.cwd}/scripts/grub-exoscale.sh",
-      "${path.cwd}/scripts/apt-dist-upgrade.sh",
-      "${local.image}/script.sh",
-      "${path.cwd}/scripts/apt-cleanup.sh",
-      "${path.cwd}/scripts/cloud-cleanup.sh",
-      "${path.cwd}/scripts/dhcp-cleanup.sh",
-      "${path.cwd}/scripts/history-cleanup.sh",
-      "${path.cwd}/scripts/machine-id-reset.sh",
-      "${path.cwd}/scripts/lock-root.sh",
-      "${path.cwd}/scripts/freespace-zero.sh",
+      "${path.cwd}/exoscale_template_scripts/motd-news-telemetry-disable.sh",
+      "${path.cwd}/exoscale_template_scripts/grub-exoscale.sh",
+      "${path.cwd}/exoscale_template_scripts/apt-dist-upgrade.sh",
+      "${local.image}/open_pryv_packer_script.sh",
+      "${path.cwd}/exoscale_template_scripts/apt-cleanup.sh",
+      "${path.cwd}/exoscale_template_scripts/cloud-cleanup.sh",
+      "${path.cwd}/exoscale_template_scripts/dhcp-cleanup.sh",
+      "${path.cwd}/exoscale_template_scripts/history-cleanup.sh",
+      "${path.cwd}/exoscale_template_scripts/machine-id-reset.sh",
+      "${path.cwd}/exoscale_template_scripts/lock-root.sh",
+      "${path.cwd}/exoscale_template_scripts/freespace-zero.sh",
     ]
   }
 }
