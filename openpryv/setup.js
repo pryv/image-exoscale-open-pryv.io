@@ -1,3 +1,7 @@
+/**
+ * @license
+ * [BSD-3-Clause](https://github.com/ops-image-exoscale-open-pryv.io/blob/master/LICENSE)
+ */
 let fs = require('fs');
 const { execSync } = require("child_process");
 
@@ -11,13 +15,13 @@ log('Fetch new version of Open-Pryv.io');
 execSync(`git -C ${pryvBasePath} clone https://github.com/pryv/open-pryv.io.git  >> ${logFile} 2>&1`);
 
 log('Setup Dev environement of Open-Pryv.io');
-execSync(`yes | yarn --cwd ${pryvPath} setup  >> ${logFile} 2>&1`);
+execSync(`yes | npm --path ${pryvPath} run setup-dev-env >> ${logFile} 2>&1`);
 
 log('Build Open-Pryv.io');
-execSync(`yes | yarn --cwd ${pryvPath} release  >> ${logFile} 2>&1`);
+execSync(`yes | npm --path ${pryvPath} install  >> ${logFile} 2>&1`);
 
 const setupCmd = `
-mv /home/ubuntu/default ` + nginxPath + `;
+mv /home/ubuntu/nginx_conf ` + nginxPath + `;
 mv /home/ubuntu/config.yml ` + pryvPath + `/config.yml;
 mv /home/ubuntu/openpryv.sh /usr/bin/openpryv.sh;
 chmod +x /usr/bin/openpryv.sh;

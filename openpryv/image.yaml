@@ -1,0 +1,7 @@
+family: "Marketplace/Pryv.io"
+version: "v1.9"
+name: "Open Pryv.io v1.9"
+username: "ubuntu"
+uefi: true
+sshkeyenabled: true
+maintainer: "Pryv"

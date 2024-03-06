@@ -83,7 +83,7 @@ You should get a service information similar to the one below:
     "serial": "t1591793506"
   },
   "cheersFrom": "Pryv API",
-  "learnMoreAt": "https://api.pryv.com/"
+  "learnMoreAt": "https://pryv.github.io/"
 }
 ```
 
@@ -92,3 +92,8 @@ Follow these steps to start using the platform: [Open Pryv.io - Start](https://g
 ### Next steps
 
 You can customize your Open Pryv.io platform and configure company email by following the [README of the git repo of Open-Pryv.io](https://github.com/pryv/open-pryv.io/).
+
+
+# License
+
+[BSD-3-Clause](LICENSE)
